@@ -226,14 +226,14 @@ void Night() {
   
   counter = 0;
   
-  while (counter < 6) {
+  while (counter < 10) {
     Serial.println("Night Falls");
     AvrLT(25); // Avriges the Light and Temp N times sets them globely to #thislight #thistemp
 
     Serial.print("This light: "); Serial.println(thislight);
     Serial.print("Average light: "); Serial.println(alllight);
     
-    if (thislight > alllight + 100) {
+    if (thislight > alllight + 20) {
       counter = counter + 1;
     } else if (thislight < alllight) {
       if(counter > 0) {
