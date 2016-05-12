@@ -53,6 +53,33 @@ void setup() {
     Serial.println(" =lights");
     Serial.print(getTemp());
     Serial.println(" =temp");
+
+    Serial.println("Display test in progress: - ");
+    for (int x = 0; x < 42; x++) { // desplay temp function
+      desplay(x);
+      Serial.print(x);
+      analogWrite(RED, brightRED);
+      analogWrite(ORINGE, brightORINGE);
+      analogWrite(YELLOW, brightYELLOW);
+      analogWrite(BLUE, brightBLUE);
+      analogWrite(GREEN, brightGREEN);
+      analogWrite(VILO, brightVILO);
+      delay(500); //100
+      Serial.print(" - ");
+    }
+
+    brightRED = 0;
+    brightORINGE = 0;
+    brightYELLOW = 0;
+    brightBLUE = 0;
+    brightGREEN = 0;
+    brightVILO = 0;
+    analogWrite(RED, brightRED);
+    analogWrite(ORINGE, brightORINGE);
+    analogWrite(YELLOW, brightYELLOW);
+    analogWrite(BLUE, brightBLUE);
+    analogWrite(GREEN, brightGREEN);
+    analogWrite(VILO, brightVILO);
 }
 
 float getTemp() {
@@ -130,9 +157,13 @@ void SetMinMax() {
 }
 
 void sleep8(float multy8) {
-  Serial.flush();
-  for (int x = 1; x <= multy8; x++) {
-      LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_ON); 
+  if (getVolt() < 7.5) {
+    Serial.flush();
+    for (int x = 1; x <= multy8; x++) {
+        LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_ON); 
+    }
+  } else {
+    delay(multy8*8*1000);
   }
 }
 
@@ -290,7 +321,7 @@ void Night() {
     if (thislight > alllight + 40) {
       sleep = 1;
     } else {
-      if(random(1,7) > 3) {
+      if(random(1,8) > 3) {
         sleep = ceil(((sleep*3.0)/2.0)-((sleep*8.0)/60)); // lots of 8 seconds to sleep
       }
     }
