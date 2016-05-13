@@ -157,7 +157,7 @@ void SetMinMax() {
 }
 
 void sleep8(float multy8) {
-  if (getVolt() < 7.5) {
+  if (getVolt() < 6.8) {
     Serial.flush();
     for (int x = 1; x <= multy8; x++) {
         LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_ON); 
@@ -169,38 +169,38 @@ void sleep8(float multy8) {
 
 void desplay(float playTemp) {
     
-  if (playTemp > 2 && playTemp < 14) {
-    brightVILO = map(playTemp, 2, 14, 0, 255);
+  if (playTemp > 4 && playTemp < 12) {
+    brightVILO = map(playTemp, 4, 12, 0, 255);
   } else {
     brightVILO = 0;
   }
 
-  if (playTemp > 8 && playTemp < 20) {
-    brightGREEN = map(playTemp, 8, 20, 0, 255);
+  if (playTemp > 9 && playTemp < 17) {
+    brightGREEN = map(playTemp, 9, 17, 0, 255);
   } else {
     brightGREEN = 0;
   }
 
-  if (playTemp > 14 && playTemp < 26) {
-    brightBLUE = map(playTemp, 14, 26, 0, 255);
+  if (playTemp > 14 && playTemp < 22) {
+    brightBLUE = map(playTemp, 14, 22, 0, 255);
   } else {
     brightBLUE = 0;
   }
 
-  if (playTemp > 20 && playTemp < 32) {
-    brightYELLOW = map(playTemp, 20, 32, 0, 255);
+  if (playTemp > 19 && playTemp < 27) {
+    brightYELLOW = map(playTemp, 19, 27, 0, 255);
   } else {
     brightYELLOW = 0;
   }
 
-  if (playTemp > 26 && playTemp < 38) {
-    brightORINGE = map(playTemp, 26, 38, 0, 255);
+  if (playTemp > 22 && playTemp < 30) {
+    brightORINGE = map(playTemp, 22, 30, 0, 255);
   } else {
     brightORINGE = 0;
   }
 
-  if (playTemp > 32 && playTemp < 43) {
-    brightRED = map(playTemp, 32, 45, 0, 255);
+  if (playTemp > 28 && playTemp < 35) {
+    brightRED = map(playTemp, 28, 35, 0, 255);
   } else {
     brightRED = 0;
   }
