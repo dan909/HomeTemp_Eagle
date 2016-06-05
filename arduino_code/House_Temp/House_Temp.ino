@@ -157,12 +157,24 @@ void SetMinMax() {
 }
 
 void sleep8(float multy8) {
-  if (getVolt() < 6.8) {
+  if (getVolt() < 6.7) {
     Serial.flush();
     for (int x = 1; x <= multy8; x++) {
         LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_ON); 
     }
   } else {
+    if (getVolt() < 6.9) {
+        for (int x = 0; x < 42; x++) { // desplay temp function
+          desplay(x);
+          analogWrite(RED, brightRED);
+          analogWrite(ORINGE, brightORINGE);
+          analogWrite(YELLOW, brightYELLOW);
+          analogWrite(BLUE, brightBLUE);
+          analogWrite(GREEN, brightGREEN);
+          analogWrite(VILO, brightVILO);
+          delay(5000); //100
+        }
+    }
     delay(multy8*8*1000);
   }
 }
