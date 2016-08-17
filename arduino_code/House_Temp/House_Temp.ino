@@ -181,26 +181,29 @@ void sleep8(float multy8) {
 
 void desplay(float playTemp) {
     
-  if (playTemp > 4 && playTemp < 12) {
+  if (playTemp > 0 && playTemp < 12) {
     brightVILO = map(playTemp, 4, 12, 0, 255);
+    brightVILO = 255 - brightVILO
   } else {
     brightVILO = 0;
   }
 
   if (playTemp > 9 && playTemp < 17) {
     brightGREEN = map(playTemp, 9, 17, 0, 255);
+    brightGREEN = 255 - brightGREEN
   } else {
     brightGREEN = 0;
   }
 
   if (playTemp > 14 && playTemp < 22) {
     brightBLUE = map(playTemp, 14, 22, 0, 255);
+    brightBLUE = 255 - brightBLUE
   } else {
     brightBLUE = 0;
   }
 
-  if (playTemp > 19 && playTemp < 27) {
-    brightYELLOW = map(playTemp, 19, 27, 0, 255);
+  if (playTemp > 17 && playTemp < 29) {
+    brightYELLOW = map(playTemp, 17, 29, 0, 255);
   } else {
     brightYELLOW = 0;
   }
@@ -211,7 +214,7 @@ void desplay(float playTemp) {
     brightORINGE = 0;
   }
 
-  if (playTemp > 28 && playTemp < 35) {
+  if (playTemp > 28 && playTemp < 55) {
     brightRED = map(playTemp, 28, 35, 0, 255);
   } else {
     brightRED = 0;
@@ -258,7 +261,7 @@ void Day() {
     avlight = alllight / float(x);
     sleep8(75); // 75
 
-    if (counter > 4) {
+    if (counter > 6) {
       break;
     }
   }
@@ -312,7 +315,7 @@ void Night() {
           analogWrite(BLUE, brightBLUE);
           analogWrite(GREEN, brightGREEN);
           analogWrite(VILO, brightVILO);
-          delay(125); //100
+          delay(200); //100
         }
   
         brightRED = 0;
