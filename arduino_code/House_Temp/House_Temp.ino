@@ -183,21 +183,21 @@ void desplay(float playTemp) {
     
   if (playTemp > 0 && playTemp < 12) {
     brightVILO = map(playTemp, 4, 12, 0, 255);
-    brightVILO = 255 - brightVILO
+    brightVILO = 255 - brightVILO;
   } else {
     brightVILO = 0;
   }
 
   if (playTemp > 9 && playTemp < 17) {
     brightGREEN = map(playTemp, 9, 17, 0, 255);
-    brightGREEN = 255 - brightGREEN
+    brightGREEN = 255 - brightGREEN;
   } else {
     brightGREEN = 0;
   }
 
   if (playTemp > 14 && playTemp < 22) {
     brightBLUE = map(playTemp, 14, 22, 0, 255);
-    brightBLUE = 255 - brightBLUE
+    brightBLUE = 255 - brightBLUE;
   } else {
     brightBLUE = 0;
   }
