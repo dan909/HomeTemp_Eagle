@@ -54,6 +54,15 @@ void setup() {
     Serial.print(getTemp());
     Serial.println(" =temp");
 
+    if (getVolt() < 5.7) {
+      for(int Loop = 0; Loop < floor(getVolt()); Loop++) {
+        analogWrite(RED, 255);
+        delay(400);
+        analogWrite(RED, 0);
+        delay(400);
+      }
+    hibenate();
+  } else {
     Serial.println("Display test in progress: - ");
     for (int x = 0; x < 42; x++) { // desplay temp function
       desplay(x);
@@ -67,7 +76,6 @@ void setup() {
       delay(500); //100
       Serial.print(" - ");
     }
-
     brightRED = 0;
     brightORINGE = 0;
     brightYELLOW = 0;
@@ -80,6 +88,7 @@ void setup() {
     analogWrite(BLUE, brightBLUE);
     analogWrite(GREEN, brightGREEN);
     analogWrite(VILO, brightVILO);
+  }
 }
 
 float getTemp() {
@@ -156,6 +165,12 @@ void SetMinMax() {
   }
 }
 
+void hibenate() {
+  while(getVolt() < 6.3) {
+    sleep8(10800);
+    }
+  }
+
 void sleep8(float multy8) {
   if (getVolt() < 6.7) {
     Serial.flush();
@@ -231,7 +246,7 @@ void Day() {
       analogWrite(RED, 0);
       delay(400);
     }
-    sleep8(10800);
+    hibenate();
   }
   for (int x = 1; x < ArrayDay-1; x++) {
     Serial.print("Day - ");
@@ -261,7 +276,7 @@ void Day() {
     avlight = alllight / float(x);
     sleep8(75); // 75
 
-    if (counter > 6) {
+    if (counter > 4) {
       break;
     }
   }
@@ -298,13 +313,13 @@ void Night() {
     } else {
 
       if (volt < 5.7) {
-        sleep = sleep * 10800;
         for(int Loop = 0; Loop < floor(volt); Loop++) {
           analogWrite(RED, 255);
           delay(400);
           analogWrite(RED, 0);
           delay(400);
         }
+        hibenate();
       } else {
         Serial.println("Display in progress");
         for (int x = 0; x < ArrayDay-1; x++) { // desplay temp function
